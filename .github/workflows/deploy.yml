@@ -17,6 +17,11 @@ jobs:
           
       - name: Install dependencies
         run: npm install
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "omerfarukk55"
+          git config --global user.email "omerfarukkaraoglan20@gmail.com"
         
       - name: Deploy to GitHub Pages
         run: npm run deploy
