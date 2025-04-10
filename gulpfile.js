@@ -1,36 +1,38 @@
-const gulp = require('gulp');
-const cleanCSS = require('gulp-clean-css');
-const htmlmin = require('gulp-htmlmin');
-const imagemin = require('gulp-imagemin');
-const uglify = require('gulp-uglify');
+import gulp from 'gulp';
+import cleanCSS from 'gulp-clean-css';
+import htmlmin from 'gulp-htmlmin';
+import imagemin from 'gulp-imagemin';
+import uglify from 'gulp-uglify';
 
 // CSS dosyalarını minimize et
-gulp.task('minify-css', () => {
+export const minifyCSS = () => {
   return gulp.src('assets/css/*.css')
     .pipe(cleanCSS())
     .pipe(gulp.dest('dist/assets/css'));
-});
+};
 
 // HTML dosyalarını minimize et
-gulp.task('minify-html', () => {
+export const minifyHTML = () => {
   return gulp.src('*.html')
     .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest('dist'));
-});
+};
 
 // JavaScript dosyalarını minimize et
-gulp.task('minify-js', () => {
+export const minifyJS = () => {
   return gulp.src('assets/js/*.js')
     .pipe(uglify())
     .pipe(gulp.dest('dist/assets/js'));
-});
+};
 
 // Resimleri optimize et
-gulp.task('optimize-images', () => {
+export const optimizeImages = () => {
   return gulp.src('assets/img/**/*')
     .pipe(imagemin())
     .pipe(gulp.dest('dist/assets/img'));
-});
+};
 
 // Tüm görevleri çalıştır
-gulp.task('build', gulp.parallel('minify-css', 'minify-html', 'minify-js', 'optimize-images')); 
+export const build = gulp.parallel(minifyCSS, minifyHTML, minifyJS, optimizeImages);
+
+export default build; 
