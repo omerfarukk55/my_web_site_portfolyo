@@ -8,6 +8,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '18'
           
       - name: Install dependencies
         run: npm install
@@ -28,6 +29,9 @@ jobs:
         run: |
           git config --global user.name "omerfarukk55"
           git config --global user.email "omerfarukkaraoglan20@gmail.com"
+        
+      - name: Build
+        run: npm run build
         
       - name: Deploy to GitHub Pages
         run: |
